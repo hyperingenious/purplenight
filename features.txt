@@ -1,0 +1,52 @@
++++++++++++++++++++Bablesh++++++++++++++++++++++++
+- Switch to NextJS
+- Landing Page + DARK MODE
+- Switch to Next AUTH
+- Research about Backend
+- Redesign the whole UI
+    a. Dashboard
+    b. Add Sections about the books
+    c. History, Favourites
+- Text to Speech
+- Need to fine-tune the model such that to make it's
+   compatible with my application's idea
+- Make a YT Video about the app.
+- Create a DB of very popular books and make a dashboard,
+   for it (Dashboard, admin)
+- Add a switch to the blogs (Private/Public)
+- Add a feature to combine 2-or more books.
+- Add a feedback modal if there is crash, bug. also monthly
+  popup for review about the application.
+X. Social Media Platform
+
+++++++++++++++++ADV+++++++++++++++++++++++
+START POSTING ON
+SOCIAL MEDIA
+WHY?
+- INITIAL USERBASE
+- TESTERS
+
++++++++++++My Explnation++++++++++++++++++
+Until Date 30 November.
+I would have implemented
+the following
+
+1. Switched entire project to NextJS
+    — Need to learn the next js and turn all the
+      code next from react
+2. Create  Amazing Landing Page, Create great UI.
+    — Need to restyle the entire page
+3. Research About backend
+    — Need to talk to a expert of LLMs explain them
+      the entire idea of the application and ask 
+      about the organisation of the application
+4. Adding Text to speech feature.
+5. Add Book categorisation feature
+6. History of what they have read and not
+7. Blog Sharing
+
+
+++++++++++++++++++++MORE FEATURES++++++++++++++++++++++
+-Modifying LLM to generate to certain depth of content
+-Making each blog as per the Depth level
+-Giving user to filter out the blogs with depth level
