@@ -1,7 +1,7 @@
 /* Spacing */
 .px-4 {
     padding-left: 1rem;
-    padding-right: 1rem;
+    padding-right: 1rem;    
   }
   
   .py-2 {
@@ -84,7 +84,7 @@
   }
   
   .text-6xl {
-    font-size: 3.2rem;
+    font-size: 7vw;
   }
   
   .text-xs {
@@ -107,6 +107,7 @@
   /* Flexbox */
   .flex {
     display: flex;
+    gap: 20px;
   }
   
   .flex-col {
@@ -127,6 +128,7 @@
   
   .text-center {
     text-align: center;
+    gap: 10px;
   }
   
   /* Borders & Radius */
@@ -162,19 +164,36 @@
 
   
   .h-32 {
-    height: 8rem;
+    height: 6rem;
   }
-  
   /* Image Adjustments */
   img {
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
+    object-fit: cover;
+    gap: 0 20px;
+    margin: 0 auto;
+    /* padding: 1rem; */
+    margin-left: 30px;
+    border-radius: 0.25rem;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    background-clip: padding-box;
+    /* border: 1px solid rgba(0, 0, 0, 0.2); */
   }
-  
   .h-auto {
     height: auto;
   }
+  @media (max-width: 400px) {
+    .sm\:w-1\/2 {
+      width: 100%;
+      height: 60%;
+    }
+    .sm\:flex-row {
+      flex-direction: row;
+    }
+  }
   
+
   /* Responsive Adjustments */
   @media (min-width: 768px) {
     .md\:w-1\/2 {

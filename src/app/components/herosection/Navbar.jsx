@@ -108,14 +108,11 @@ function Navbar() {
   </defs>
 </svg>
 
-        </div>
-      
-        <div>
-          <button className="px-4 py-2 mr-2 border rounded-md">Sign in</button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded">
-            Sign up
-          </button>
-        </div>
+    </div>
+        <div className="flex">
+        <button className="px-4 py-2 bg-blue-600 text-white rounded mr-2">Sign in</button>
+        <button className="px-4 py-2 bg-blue-600 text-white rounded">Sign up</button>
+    </div>
       </nav>
     </div>
   );
