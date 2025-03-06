@@ -14,7 +14,6 @@ function SubscriptionCard({ open, colorScheme }) {
         queryKey: ["blog"],
         queryFn: () => getSubscription({ getToken }),
     });
-    console.log(data)
 
     function formatDate(timestamp) {
         const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
