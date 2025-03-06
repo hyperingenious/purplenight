@@ -1,3 +1,4 @@
+import { SignInButton, SignUpButton } from "@clerk/clerk-react";
 import React from "react";
 
 function Navbar() {
@@ -110,8 +111,12 @@ function Navbar() {
 
     </div>
         <div style={{ display: 'flex' }}>
+         <SignUpButton mode="modal">
+             <button style={{ padding: '1rem 2rem', backgroundColor: '#3b82f6', color: 'white', borderRadius: '0.25rem' }}>Sign up</button>
+         </SignUpButton>
+         <SignInButton mode="modal">
         <button style={{ padding: '1rem 2rem', backgroundColor: '#3b82f6', color: 'white', borderRadius: '0.25rem', marginRight: '0.5rem' }}>Sign in</button>
-        <button style={{ padding: '1rem 2rem', backgroundColor: '#3b82f6', color: 'white', borderRadius: '0.25rem' }}>Sign up</button>
+         </SignInButton>
         </div>
       </nav>
     </div>
