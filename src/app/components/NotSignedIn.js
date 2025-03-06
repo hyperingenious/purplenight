@@ -2,7 +2,6 @@ import Features from './herosection/Features';
 import Footer from './herosection/Footer';
 import Headersection from './herosection/Headersection';
 import Navbar from './herosection/Navbar';
-import './NotSignedIn.css'
 import React from "react";
 import Image2section from './herosection/Image2section';
 import Image1section from './herosection/Image1section';
