@@ -2,15 +2,15 @@ import React from 'react';
 const image2section = () => {
   return (
     <div>
-      <section className="flex flex-col md:flex-row items-center p-8  gap-10">
-      <div className="md:w-1/2">
-              <img src={'/herosection-images/first.png'} alt="Claude AI" className="w-full rounded-lg" />
-              </div>
-              <div className="md:w-1/2">
-                <h2 className="text-2xl font-semibold">Take Claude with you</h2>
-                <p className="mt-4 mb-3  py-2 ">Talk to Claude, anywhere you go. Brainstorm ideas, get answers, and analyze images on the go. The Claude apps put the power of frontier intelligence in your back pocket.</p>
-              </div>
-            </section>
+      <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', padding: '1rem', width: '100%',  justifyContent: 'center'}}>
+        <div style={{ width: '100%', margin: '0 auto', maxWidth: '500px' }}>
+          <img src={'/herosection-images/first.png'} alt="Claude AI" style={{ width: '100%', borderRadius: '0.5rem' }} />
+        </div>
+        <div style={{ width: '100%', margin: '0 auto', maxWidth: '500px' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '600' }}>Take Claude with you</h2>
+          <p style={{ marginTop: '0.5rem', marginBottom: '0.5rem', padding: '0.5rem', fontSize: '1rem' }}>Talk to Claude, anywhere you go. Brainstorm ideas, get answers, and analyze images on the go. The Claude apps put the power of frontier intelligence in your back pocket.</p>
+        </div>
+      </section>
     </div>
   )
 }

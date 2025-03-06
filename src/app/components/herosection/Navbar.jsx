@@ -2,10 +2,10 @@ import React from "react";
 
 function Navbar() {
   return (
-    <div className="font-spectral bg-gray-100 text-gray-900 pt-0 pt-0">
+    <div style={{fontFamily: 'Spectral', backgroundColor: '#f2f2f2', color: '#1a202c', paddingTop: '0'}}>
       {/* Navbar */}
-      <nav className="flex justify-between items-center p-5 bg-white shadow-md">
-        <div className="h-20 mt-0" >
+      <nav style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', backgroundColor: 'white', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'}}>
+        <div style={{height: '80px', marginTop: '0'}}>
 
         <svg
   style={{ cursor: "pointer" }}
@@ -109,10 +109,10 @@ function Navbar() {
 </svg>
 
     </div>
-        <div className="flex">
-        <button className="px-4 py-2 bg-blue-600 text-white rounded mr-2">Sign in</button>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded">Sign up</button>
-    </div>
+        <div style={{ display: 'flex' }}>
+        <button style={{ padding: '1rem 2rem', backgroundColor: '#3b82f6', color: 'white', borderRadius: '0.25rem', marginRight: '0.5rem' }}>Sign in</button>
+        <button style={{ padding: '1rem 2rem', backgroundColor: '#3b82f6', color: 'white', borderRadius: '0.25rem' }}>Sign up</button>
+        </div>
       </nav>
     </div>
   );

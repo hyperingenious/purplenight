@@ -10,14 +10,14 @@ import Image1section from './herosection/Image1section';
 
 const NotSignedIn = () => {
   return (
-    <div className="font-spectral min-h-screen bg-gray-100 text-gray-900">
+    <div style={{ fontFamily: 'Spectral', minHeight: '100vh', backgroundColor: '#f3f4f6', color: '#111827' }}>
       <Navbar />
      {/*header section*/}
       <Headersection />
       {/* Features */}
       <Features />
       {/* Call to Action */}
-      <Image1section/>
+      <Image1section />
       <Image2section />
       {/* Footer */}
       <Footer />
