@@ -41,18 +41,28 @@ function SubscriptionCard({ open, colorScheme }) {
                                     data.isActiveSubscription && data.subscription_type == 'reader' &&
                                     <CrownCross size={18} color="#edbd0c" weight="fill" />
                                 }
+
                             </Center>
                         </Card>
                         <Stack gap={0}>
-                            <Text size="sm" c={colorScheme === "dark" ? dark_theme.main_text_color : "dark"}>
-                                {data.isActiveSubscription && data.subscription_type === 'avid_reader' && 'Avid Reader'}
-                                {data.isActiveSubscription && data.subscription_type == 'reader' && "Reader"}
-                            </Text>
-                            <Group w={'100%'} justify="flex-start" wrap="nowrap">
+
+                            <Group w={'100%'} justify="space-between" wrap="nowrap">
+                                <Text size="sm" c={colorScheme === "dark" ? dark_theme.main_text_color : "dark"}>
+                                    {data.isActiveSubscription && data.subscription_type === 'avid_reader' && 'Avid Reader'}
+                                    {data.isActiveSubscription && data.subscription_type == 'reader' && "Reader"}
+                                </Text>
+                                {
+                                    data.isActiveSubscription &&
+                                    <Text fw={500} size="xs" c="dimmed">
+                                        ends: {formatDate(data.end_date)}
+                                    </Text>
+                                }
+                            </Group>
+                            <Group gap={0} w={'100%'} justify="flex-start" wrap="nowrap">
                                 <Text size="xs" c="dimmed" fw={600}>
                                     {!data.isActiveSubscription && `Books: ${data.freeBookCount}/5`}
                                 </Text>
- 
+
                                 {!data.isActiveSubscription &&
                                     <Button
                                         leftSection={<Crown weight="duotone" size={18} />}
@@ -60,12 +70,6 @@ function SubscriptionCard({ open, colorScheme }) {
                                 <Text size="xs" c="dimmed" fw={500}>
                                     {data.isActiveSubscription && `blogs: ${data.quota.blogs_generated}/${data.quota.allocated_blog_quota}`}
                                 </Text>
-                               {
-                                    data.isActiveSubscription &&
-                                    <Text fw={500} size="xs" c="dimmed">
-                                        ends: {formatDate(data.end_date)}
-                                    </Text>
-                                }
                             </Group>
                         </Stack>
                     </Group>
