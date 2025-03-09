@@ -15,6 +15,7 @@ import { useUser } from "@clerk/clerk-react";
 import { postPDF } from "../server-functions/postPDF";
 import { getSubscription } from "@/appwrite/get/getSubscription";
 import { getTokenPlan } from "../server-functions/getTokenPlan";
+import ModalForm from "./ModalForm";
 
 function PDFUploadModalProvider() {
   const { user } = useUser();
@@ -101,28 +102,7 @@ function PDFUploadModalProvider() {
   const calcPDFSize = (subscription_type, isActiveSubscription) => isActiveSubscription && subscription_type === 'reader' ? 20 * 1024 ** 2 : 10 * 1024 ** 2
 
   return (
-    <Modal
-      radius={"xl"}
-      centered
-      styles={{
-        content: {
-          maxWidth: "310px",
-        },
-        body: {
-          background: colorScheme === "dark" ? dark_theme.app_bg_dark_color : "white",
-          paddingTop: "2rem",
-          paddingLeft: "1.5rem",
-          paddingRight: "1.5rem",
-          paddingBottom: "2rem",
-        },
-        header: {
-          display: "none",
-        },
-      }}
-      opened={opened}
-      onClose={status !== "pending" && close}
-      title="upload"
-    >
+    <ModalForm opened={opened} close={close} title="upload">
       <Stack gap={"0"} miw={230}>
         <Input.Wrapper c={colorScheme === "dark" ? dark_theme.secondary_text_color : "dark"} l label="Book Title">
           <Input
@@ -299,7 +279,7 @@ function PDFUploadModalProvider() {
           </Button>
         )
       }
-    </Modal >
+    </ModalForm >
   );
 }
 export default PDFUploadModalProvider;

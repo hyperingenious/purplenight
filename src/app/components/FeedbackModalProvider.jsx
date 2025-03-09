@@ -20,6 +20,7 @@ import { useAuth } from "@clerk/nextjs";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { postFeedback } from "../server-functions/postFeedback";
+import ModalForm from "./ModalForm";
 
 function FeedbackModalProvider({ opened, close }) {
     const theme = useMantineTheme();
@@ -59,28 +60,7 @@ function FeedbackModalProvider({ opened, close }) {
         reader.readAsDataURL(file[0]);
     }
     return (
-        <Modal
-            radius={"xl"}
-            centered
-            styles={{
-                content: {
-                    maxWidth: "310px",
-                },
-                body: {
-                    background: colorScheme === "dark" ? dark_theme.app_bg_dark_color : "white",
-                    paddingTop: "2rem",
-                    paddingLeft: "1.5rem",
-                    paddingRight: "1.5rem",
-                    paddingBottom: "2rem",
-                },
-                header: {
-                    display: "none",
-                },
-            }}
-            opened={opened}
-            onClose={status !== "pending" && close}
-            title="upload"
-        >
+        <ModalForm opened={opened} close={close} title="upload" status={status}>
             <Stack miw={230} gap={0}>
                 <Textarea
                     label="Share Feedback"
@@ -152,7 +132,7 @@ function FeedbackModalProvider({ opened, close }) {
                 leftSection={<Chat size={18} />}
                 size="sm"
                 c={feedback?.length < 1 ? '#00000052' : 'black'}
-                bg={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[2]}
+                bg={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[1]}
                 fullWidth
                 fw={400}
                 radius="md"
@@ -161,7 +141,7 @@ function FeedbackModalProvider({ opened, close }) {
             >
                 Share Feeback
             </Button>
-        </Modal >
+        </ModalForm >
     );
 }
 export default FeedbackModalProvider;
