@@ -1,4 +1,16 @@
-import { Card, Text, Badge, Group, Stack, Title, useMantineTheme, useComputedColorScheme, Button, Modal, ActionIcon, } from "@mantine/core";
+import {
+  Card,
+  Text,
+  Badge,
+  Group,
+  Stack,
+  Title,
+  useMantineTheme,
+  useComputedColorScheme,
+  Button,
+  Modal,
+  ActionIcon,
+} from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import removeMarkdown from "markdown-to-text";
 import { cardShadows } from "../utils/shadows";
@@ -14,6 +26,7 @@ import { ID } from "appwrite";
 import CopyButton from "./CopyButton";
 import { useAuth, useUser } from "@clerk/nextjs";
 import toast from "react-hot-toast";
+import ModalForm from "./ModalForm";
 
 function BlogCard({ blog }) {
   const theme = useMantineTheme();
@@ -30,13 +43,20 @@ function BlogCard({ blog }) {
   }, [blog.blog_markdown]);
 
   // Parse markdown content
-  const content = useMemo(() => removeMarkdown(blog.blog_markdown), [blog.blog_markdown]);
+  const content = useMemo(
+    () => removeMarkdown(blog.blog_markdown),
+    [blog.blog_markdown]
+  );
   // Pre-memoize styles
-  const cardBackground = colorScheme === "dark" ? dark_theme.nav_link_dark_color : theme.colors.gray[0];
-  const textColor = colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[9];
+  const cardBackground =
+    colorScheme === "dark"
+      ? dark_theme.nav_link_dark_color
+      : theme.colors.gray[0];
+  const textColor =
+    colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[9];
 
   const [opened, { open, close }] = useDisclosure(false);
-  const { getToken } = useAuth()
+  const { getToken } = useAuth();
   // status can be idle, pending, success, error
   const {
     mutateAsync: shareBlog,
@@ -47,7 +67,8 @@ function BlogCard({ blog }) {
     onError: () => {
       toast.error("Something went wrong", {
         style: {
-          backgroundColor: colorScheme === "dark" ? dark_theme.card_bg_dark_color : "black",
+          backgroundColor:
+            colorScheme === "dark" ? dark_theme.card_bg_dark_color : "black",
           color: "white",
         },
       });
@@ -62,27 +83,11 @@ function BlogCard({ blog }) {
   const document_id = ID.unique();
   return (
     <>
-      <Modal
-        radius={"xl"}
-        centered
-        styles={{
-          content: {
-            maxWidth: "310px",
-          },
-          body: {
-            background: colorScheme === "dark" ? dark_theme.app_bg_dark_color : "white",
-            paddingTop: "1rem",
-            paddingLeft: "0.5rem",
-            paddingRight: "0.5rem",
-            paddingBottom: "1rem",
-          },
-          header: {
-            display: "none",
-          },
-        }}
+      <ModalForm
         opened={opened}
-        onClose={status !== "pending" && close}
-        title="upload"
+        close={close}
+        title="Share Blog Publicly"
+        status={status}
       >
         <Title
           lineClamp={3}
@@ -128,18 +133,22 @@ function BlogCard({ blog }) {
                 weight={600}
                 className={dm_sans.className}
                 size={"sm"}
-                style={{ lineHeight: 1.1 }}
+                style={{ lineHeight: 1.4 }}
                 c={textColor}
               >
                 {title}
               </Title>
-              <Group gap={"xs"} wrap="nowrap" mt={"5"}>
+              <Group gap={"xs"} wrap="nowrap" mt={"1"}>
                 <Badge
                   variant="light"
                   className={afacad_flux.className}
                   size={"xs"}
                   w={80}
-                  color={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[6]}
+                  color={
+                    colorScheme === "dark"
+                      ? dark_theme.main_text_color
+                      : theme.colors.gray[6]
+                  }
                   style={{ boxShadow: cardShadows.xs }}
                 >
                   {blog?.books?.book_name || "Unknown"}
@@ -150,7 +159,11 @@ function BlogCard({ blog }) {
                   w={80}
                   truncate
                   weight={600}
-                  color={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[6]}
+                  color={
+                    colorScheme === "dark"
+                      ? dark_theme.main_text_color
+                      : theme.colors.gray[6]
+                  }
                   className={dm_sans.className}
                 >
                   {blog.books?.author || "Unknown"}
@@ -160,18 +173,26 @@ function BlogCard({ blog }) {
           </Group>
         </Card>
         <Text
-          ml={"xs"}
-          mt={"xs"}
           size="xs"
           fw={500}
-          color={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[6]}
+          color={
+            colorScheme === "dark"
+              ? dark_theme.main_text_color
+              : theme.colors.gray[6]
+          }
           className={dm_sans.className}
         >
           {status !== "success"
             ? "Note: Sharing this will make your blog pulicly accessible to everyone with the generated link."
             : "Content shared successfully!"}
         </Text>
-        <Group justify="center" ml={"xs"} mt={"xs"} gap={"xs"} display={status === "success" ? "" : "none"}>
+        <Group
+          justify="center"
+          ml={"xs"}
+          mt={"xs"}
+          gap={"xs"}
+          display={status === "success" ? "" : "none"}
+        >
           <CopyButton
             text={"Copy Link"}
             value={`https://purplenight.hyperingenious.tech/shared/blogs/public/${data}`}
@@ -180,11 +201,19 @@ function BlogCard({ blog }) {
         <Button
           display={status === "success" && "none"}
           w={270}
-          mt={"sm"}
-          mx={"xs"}
-          leftSection={<Share size={16} />}
-          color={colorScheme === "dark" ? dark_theme.secondary_text_color : theme.colors.gray[2]}
-          c={colorScheme === "dark" ? dark_theme.nav_link_dark_color : theme.colors.dark[9]}
+          align="center"
+          mx={"xm"}
+          leftSection={<Share size={18} />}
+          color={
+            colorScheme === "dark"
+              ? dark_theme.secondary_text_color
+              : theme.colors.gray[2]
+          }
+          c={
+            colorScheme === "dark"
+              ? dark_theme.nav_link_dark_color
+              : theme.colors.dark[9]
+          }
           radius={"md"}
           fullWidth
           loading={status === "pending"}
@@ -208,7 +237,7 @@ function BlogCard({ blog }) {
         >
           Share Blog
         </Button>
-      </Modal>
+      </ModalForm>
 
       <Card
         shadow={cardShadows.md}
@@ -237,14 +266,23 @@ function BlogCard({ blog }) {
           />
 
           <Stack pr="sm" py="sm" gap={0}>
-            <Group mb="xs" gap="xs" style={{ flexDirection: "column" }} align="flex-start">
-              <Group w={"100%"} wrap={'nowrap'} justify="space-between">
+            <Group
+              mb="xs"
+              gap="xs"
+              style={{ flexDirection: "column" }}
+              align="flex-start"
+            >
+              <Group w={"100%"} wrap={"nowrap"} justify="space-between">
                 <Group gap={"xs"}>
                   <Badge
                     variant="light"
                     className={afacad_flux.className}
                     size={isSmallScreen ? "xs" : "sm"}
-                    color={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[6]}
+                    color={
+                      colorScheme === "dark"
+                        ? dark_theme.main_text_color
+                        : theme.colors.gray[6]
+                    }
                     style={{ boxShadow: cardShadows.xs }}
                     maw={isSmallScreen ? 100 : 150}
                   >
@@ -254,7 +292,13 @@ function BlogCard({ blog }) {
                     variant="light"
                     className={afacad_flux.className}
                     size={isSmallScreen ? "xs" : "sm"}
-                    styles={{ label: { display: "flex", alignItems: "center", gap: "0.2rem" } }}
+                    styles={{
+                      label: {
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.2rem",
+                      },
+                    }}
                     color={blog.isRead ? "blue" : "gray"}
                     style={{ boxShadow: cardShadows.xs }}
                   >
@@ -262,7 +306,14 @@ function BlogCard({ blog }) {
                     Read
                   </Badge>
                 </Group>
-                <ActionIcon onClick={open} variant="light" color="gray" radius="xl" size={"sm"} aria-label="Settings">
+                <ActionIcon
+                  onClick={open}
+                  variant="light"
+                  color="gray"
+                  radius="xl"
+                  size={"sm"}
+                  aria-label="Settings"
+                >
                   <ShareNetwork weight="bold" size={12} />
                 </ActionIcon>
               </Group>
@@ -271,7 +322,11 @@ function BlogCard({ blog }) {
                 ml={4}
                 size="xs"
                 weight={600}
-                color={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.gray[6]}
+                color={
+                  colorScheme === "dark"
+                    ? dark_theme.main_text_color
+                    : theme.colors.gray[6]
+                }
                 className={dm_sans.className}
               >
                 {blog.books?.author || "Unknown"}
@@ -291,7 +346,11 @@ function BlogCard({ blog }) {
                 {title}
               </Title>
               <Text
-                c={colorScheme === "dark" ? dark_theme.secondary_text_color : theme.colors.gray[5]}
+                c={
+                  colorScheme === "dark"
+                    ? dark_theme.secondary_text_color
+                    : theme.colors.gray[5]
+                }
                 weight={500}
                 lineClamp={2}
                 size="sm"
