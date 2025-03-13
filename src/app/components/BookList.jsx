@@ -42,22 +42,30 @@ function BookList({
       shadow={cardShadows.md}
       key={item.$id}
       w={"100%"}
-      bg={colorScheme === "dark" ? dark_theme.nav_link_dark_color : theme.colors.gray[2]}
+      bg={
+        colorScheme === "dark"
+          ? dark_theme.nav_link_dark_color
+          : theme.colors.gray[2]
+      }
       mx={!bigScreen && "md"}
+      style={{ cursor: "pointer" }}
       p="sm"
       maw={480}
       miw={300}
       radius="md"
-      onClick={()=>{
-        const blogIds = item.blogs;
-        blogIds.unshift({$id:item.$id});
-        const slug = blogIds.map(obj=> obj.$id).join('/');
-        const url = `/specifics/${slug}`
-        router.push(url);
-      }}
     >
       <Group wrap="nowrap" align="flex-start" justify="space-between">
-        <Group wrap="nowrap" align="flex-start">
+        <Group
+          onClick={() => {
+            const blogIds = item.blogs;
+            blogIds.unshift({ $id: item.$id });
+            const slug = blogIds.map((obj) => obj.$id).join("/");
+            const url = `/specifics/${slug}`;
+            router.push(url);
+          }}
+          wrap="nowrap"
+          align="flex-start"
+        >
           <BackgroundImage
             style={{
               boxShadow: cardShadows.xs,
@@ -70,7 +78,11 @@ function BookList({
           />
           <Stack gap={0}>
             <Text
-              c={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.dark[9]}
+              c={
+                colorScheme === "dark"
+                  ? dark_theme.main_text_color
+                  : theme.colors.dark[9]
+              }
               w={smallSizeMath ? 200 : 300}
               fw={400}
               className={poppins.className}
@@ -84,18 +96,40 @@ function BookList({
               className={poppins.className}
               fw={500}
               size="sm"
-              c={colorScheme === "dark" ? dark_theme.secondary_text_color : theme.colors.dark[2]}
+              c={
+                colorScheme === "dark"
+                  ? dark_theme.secondary_text_color
+                  : theme.colors.dark[2]
+              }
               truncate={"end"}
             >
               By: {item?.author || "unkown"}
             </Text>
             <Group gap={"xs"} align="center">
-              <Text size="xs" c={colorScheme === "dark" ? dark_theme.secondary_text_color : theme.colors.dark[2]}>
-                {formatDate(item.$createdAt)}, {isGeneratingBook.bookId !== item.$id && `${item.blogs.length} Extracts`}
+              <Text
+                size="xs"
+                c={
+                  colorScheme === "dark"
+                    ? dark_theme.secondary_text_color
+                    : theme.colors.dark[2]
+                }
+              >
+                {formatDate(item.$createdAt)},{" "}
+                {isGeneratingBook.bookId !== item.$id &&
+                  `${item.blogs.length} Extracts`}
               </Text>
-              {isGeneratingBook.isGenerating && isGeneratingBook.bookId === item.$id && (
-                <Loader color={colorScheme === "dark" ? dark_theme.main_text_color : theme.colors.dark[9]} type="dots" size={"xs"} />
-              )}
+              {isGeneratingBook.isGenerating &&
+                isGeneratingBook.bookId === item.$id && (
+                  <Loader
+                    color={
+                      colorScheme === "dark"
+                        ? dark_theme.main_text_color
+                        : theme.colors.dark[9]
+                    }
+                    type="dots"
+                    size={"xs"}
+                  />
+                )}
             </Group>
           </Stack>
         </Group>
@@ -103,17 +137,35 @@ function BookList({
           <Menu
             styles={{
               dropdown: {
-                background: `${colorScheme === "dark" ? dark_theme.app_bg_dark_color : undefined}`,
+                background: `${
+                  colorScheme === "dark"
+                    ? dark_theme.app_bg_dark_color
+                    : undefined
+                }`,
               },
             }}
             radius={"md"}
             width={150}
           >
             <Menu.Target>
-              <DotsThreeVertical color={colorScheme === "dark" ? dark_theme.main_text_color : undefined} size={22} />
+              <DotsThreeVertical
+                color={
+                  colorScheme === "dark"
+                    ? dark_theme.main_text_color
+                    : undefined
+                }
+                size={22}
+              />
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Label c={colorScheme === "dark" ? dark_theme.main_text_color : undefined} size={22}>
+              <Menu.Label
+                c={
+                  colorScheme === "dark"
+                    ? dark_theme.main_text_color
+                    : undefined
+                }
+                size={22}
+              >
                 Book Options
               </Menu.Label>
               <Menu.Item
@@ -121,8 +173,22 @@ function BookList({
                   setGenerateBookId(item.$id);
                   openGenerateBookModal();
                 }}
-                c={colorScheme === "dark" ? dark_theme.main_text_color : undefined}
-                leftSection={<Sparkle color={colorScheme === "dark" ? dark_theme.main_text_color : undefined} size={16} weight="fill" />}
+                c={
+                  colorScheme === "dark"
+                    ? dark_theme.main_text_color
+                    : undefined
+                }
+                leftSection={
+                  <Sparkle
+                    color={
+                      colorScheme === "dark"
+                        ? dark_theme.main_text_color
+                        : undefined
+                    }
+                    size={16}
+                    weight="fill"
+                  />
+                }
               >
                 Generate
               </Menu.Item>
