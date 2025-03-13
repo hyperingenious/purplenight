@@ -12,6 +12,7 @@ import {
 import { cardShadows } from "../utils/shadows";
 import { DotsThreeVertical, Sparkle, Trash } from "@phosphor-icons/react";
 import { useMediaQuery } from "@mantine/hooks";
+import { useRouter } from "next/navigation";
 import { dark_theme } from "../config/theme";
 import { memo } from "react";
 import { poppins } from "../font";
@@ -28,6 +29,7 @@ function BookList({
   const colorScheme = useComputedColorScheme();
   const smallSizeMath = useMediaQuery("(max-width:480px)");
   const bigScreen = useMediaQuery("(min-width:1367px)");
+  const router = useRouter();
 
   const formatDate = (isoString) => {
     const date = new Date(isoString);
@@ -46,6 +48,13 @@ function BookList({
       maw={480}
       miw={300}
       radius="md"
+      onClick={()=>{
+        const blogIds = item.blogs;
+        blogIds.unshift({$id:item.$id});
+        const slug = blogIds.map(obj=> obj.$id).join('/');
+        const url = `/specifics/${slug}`
+        router.push(url);
+      }}
     >
       <Group wrap="nowrap" align="flex-start" justify="space-between">
         <Group wrap="nowrap" align="flex-start">
