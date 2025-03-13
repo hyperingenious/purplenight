@@ -2,9 +2,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styles from "./BottomBar.module.css";
 import { House, FileArrowUp, Books } from "@phosphor-icons/react";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { dark_theme } from "../config/theme";
-import { ScrollArea, Stack, useComputedColorScheme, useMantineTheme } from "@mantine/core";
+import {
+  ScrollArea,
+  Stack,
+  useComputedColorScheme,
+  useMantineTheme,
+} from "@mantine/core";
 import { useResizeObserver, useToggle } from "@mantine/hooks";
 import { fetchBook } from "@/appwrite/fetchBook";
 import LoadingSkeleton from "./bottom-bar/Skeleton";
@@ -22,7 +27,7 @@ const BottomBar = () => {
   const [ref] = useResizeObserver();
   const theme = useMantineTheme();
 
-  const { getToken } = useAuth()
+  const { getToken } = useAuth();
 
   const {
     data: books,
@@ -35,11 +40,20 @@ const BottomBar = () => {
   });
 
   const iconColor = useMemo(
-    () => (colorScheme == "dark" ? dark_theme.main_text_color : theme.colors.gray[9]),
+    () =>
+      colorScheme == "dark" ? dark_theme.main_text_color : theme.colors.gray[9],
     [colorScheme, theme.colors.gray]
   );
 
   const [activeBook, setActiveBook] = useState(null);
+  const { slug } = useParams();
+
+  useEffect(() => {
+    if (slug) {
+      setActiveBook(slug[0]);
+    } else setActiveBook(null);
+  }, [slug]);
+
   const [currentRoute, setCurrentRoute] = useState(null);
   useEffect(() => setCurrentRoute(pathname), [pathname]);
   return (
@@ -56,9 +70,9 @@ const BottomBar = () => {
     >
       <div
         style={{
-          background: colorScheme == "dark" ? '#131b2dc2' : "#ffffffc2",
-          backdropFilter: 'blur(8px)'
-          , padding: "8px",
+          background: colorScheme == "dark" ? "#131b2dc2" : "#ffffffc2",
+          backdropFilter: "blur(8px)",
+          padding: "8px",
         }}
         className={styles.nav_parent}
       >
@@ -71,13 +85,12 @@ const BottomBar = () => {
           scrollbars="y"
         >
           <Stack gap="xs" m="xs">
-            {activeBook && <ActiveBookCard {...activeBook} colorScheme={colorScheme} />}
             {isSuccess &&
               books.map(
                 (data, i) =>
-                  data.$id !== activeBook && (
+                   (
                     <BookCards
-                      setActiveBook={setActiveBook}
+                      activeBook={activeBook}
                       key={i}
                       {...data}
                       colorScheme={colorScheme}
@@ -104,7 +117,10 @@ const BottomBar = () => {
               color: currentRoute == "/" && "var(--hover-c)",
             }}
           >
-            <House size={80} weight={currentRoute == "/" ? "fill" : "regular"} />
+            <House
+              size={80}
+              weight={currentRoute == "/" ? "fill" : "regular"}
+            />
           </Link>
           <div
             className={styles.link}
@@ -128,7 +144,10 @@ const BottomBar = () => {
               color: currentRoute == "/uploaded" && "var(--hover-c)",
             }}
           >
-            <FileArrowUp weight={currentRoute == "/uploaded" ? "fill" : "regular"} size={80} />
+            <FileArrowUp
+              weight={currentRoute == "/uploaded" ? "fill" : "regular"}
+              size={80}
+            />
           </Link>
         </nav>
       </div>
