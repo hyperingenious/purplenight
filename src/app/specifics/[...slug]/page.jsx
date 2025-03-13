@@ -9,8 +9,10 @@ import BlogSkeleton from "@/app/components/BlogSkeleton";
 
 export default function Specifics() {
   const { slug } = useParams();
-  const { getToken } = useAuth()
+  const { getToken } = useAuth();
   const colorScheme = useComputedColorScheme();
+
+  const idsArray = slug.slice(1)
 
   const {
     data: blogsData,
@@ -18,14 +20,19 @@ export default function Specifics() {
     isSuccess: isBlogsSuccess,
   } = useQuery({
     queryKey: [slug],
-    queryFn: () => fetchBlogsWithIdArray({ idsArray: slug, getToken }),
+    queryFn: () => fetchBlogsWithIdArray({ idsArray, getToken }),
   });
 
   return (
     <ScrollArea scrollbarSize={2} h={"100vh"} scrollbars="y">
       <Stack pb={"100"}>
-        {isBlogsLoading && <BlogSkeleton colorScheme={colorScheme} instances={10} />}
-        {isBlogsSuccess && blogsData.map((blog, i) => <BlogCard blog={blog.blog} key={`${blog.blog.$id}${i}`} />)}
+        {isBlogsLoading && (
+          <BlogSkeleton colorScheme={colorScheme} instances={10} />
+        )}
+        {isBlogsSuccess &&
+          blogsData.map((blog, i) => (
+            <BlogCard blog={blog.blog} key={`${blog.blog.$id}${i}`} />
+          ))}
       </Stack>
     </ScrollArea>
   );
