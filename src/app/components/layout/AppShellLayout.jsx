@@ -21,6 +21,7 @@ import SharedContent from "@/app/shared/blogs/public/[id]/page";
 import SubscriptionCard from "./SubscriptionCard";
 import SubscriptionModal from "../SubscriptionModal";
 import FeedbackModalProvider from "../FeedbackModalProvider";
+import CategorySelect from "../CategorySelect";
 
 function AppShellLayout({ children }) {
   const { user } = useUser();
@@ -85,7 +86,8 @@ function AppShellLayout({ children }) {
                 />
                 <NavigationRoutes toggle={toggleNavbar} colorScheme={colorScheme} />
               </Stack>
-              <Stack gap={0}>
+              <CategorySelect />
+             <Stack gap={0}>
                 <SubscriptionCard
                   open={open}
                   colorScheme={colorScheme}
