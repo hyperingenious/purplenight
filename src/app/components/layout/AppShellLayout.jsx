@@ -22,7 +22,7 @@ import SubscriptionCard from "./SubscriptionCard";
 import SubscriptionModal from "../SubscriptionModal";
 import FeedbackModalProvider from "../FeedbackModalProvider";
 import CategorySelect from "../CategorySelect";
-
+// import ScrollSlider from "./ScrollSlider"
 function AppShellLayout({ children }) {
   const { user } = useUser();
   // status can be idle, pending, success, error
@@ -86,6 +86,7 @@ function AppShellLayout({ children }) {
                 />
                 <NavigationRoutes toggle={toggleNavbar} colorScheme={colorScheme} />
               </Stack>
+              {/* <ScrollSlider /> */}
               <CategorySelect />
              <Stack gap={0}>
                 <SubscriptionCard

@@ -15,6 +15,7 @@ import { useMediaQuery } from "@mantine/hooks";
 import { dark_theme } from "../config/theme";
 import { memo } from "react";
 import { poppins } from "../font";
+import ScrollSlider from "../components/layout/ScrollSlider";
 
 function BookList({
   data,
@@ -78,7 +79,7 @@ function BookList({
               c={colorScheme === "dark" ? dark_theme.secondary_text_color : theme.colors.dark[2]}
               truncate={"end"}
             >
-              By: {item?.author || "unkown"}
+              By: {item?.author || "unknown"}
             </Text>
             <Group gap={"xs"} align="center">
               <Text size="xs" c={colorScheme === "dark" ? dark_theme.secondary_text_color : theme.colors.dark[2]}>
@@ -127,6 +128,7 @@ function BookList({
               >
                 Delete
               </Menu.Item>
+              <ScrollSlider />
             </Menu.Dropdown>
           </Menu>
         </Stack>
@@ -135,4 +137,5 @@ function BookList({
   ));
   return <>{rows}</>;
 }
+
 export default memo(BookList);
