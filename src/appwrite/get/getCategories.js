@@ -7,7 +7,7 @@
  */
 async function getCategories() {
   try {
-    const url = `${process.env.NEXT_PUBLIC_NODE_SERVER_URL}public-client-appwrite-get?slug=GET_GET_CATEGORIES`;
+    const url = `${process.env.NEXT_PUBLIC_NODE_SERVER_URL}public-client-appwrite-get?slug=GET_CATEGORIES`;
     const res = await fetch(url, {
       method: "GET",
       headers: {
