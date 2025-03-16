@@ -18,7 +18,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { dark_theme } from "../config/theme";
-import { afacad_flux, Baloo_Bhai_2, dm_sans } from "../font";
+import { afacad_flux, dm_sans } from "../font";
 import { Check, Checks, Share, ShareNetwork } from "@phosphor-icons/react";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import { shareBlogPublicly } from "@/appwrite/add/addShareBlog";
