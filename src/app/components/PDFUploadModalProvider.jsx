@@ -40,8 +40,6 @@ function PDFUploadModalProvider() {
   const [sliderState, setSliderState] = useState(null);
   const [sliderVal, setSliderVal] = useState(0);
 
-  // const queryClient = useQueryClient();
-  // const { } = queryClient.getQueryData(["blog"]);
 
   function chooseRandomImage() {
     setCurrentImage(
