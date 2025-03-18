@@ -2,7 +2,6 @@
 import {
   Group,
   Stack,
-  Modal,
   Button,
   Input,
   Card,
@@ -85,7 +84,6 @@ function PDFUploadModalProvider() {
       toast.error(err.message);
     },
   });
-
   function tokenPlanOnSuccess({ possiblePercentangeJump }) {
     const closestTo100 = roundToClosestFactorOf100(possiblePercentangeJump);
 
