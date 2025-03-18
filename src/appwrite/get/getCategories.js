@@ -5,12 +5,14 @@
  * @returns {Promise<object[]>} - A promise that resolves to an array of category objects.  Each object represents a category and should have at least an `id` and `name` property. Rejects with an error if the request fails.
  * @throws {Error} If there's an error fetching the categories.  The error message will indicate the nature of the problem.
  */
-async function getCategories() {
+async function getCategories({ getToken }) {
   try {
-    const url = `${process.env.NEXT_PUBLIC_NODE_SERVER_URL}public-client-appwrite-get?slug=GET_CATEGORIES`;
+    const url = `${process.env.NEXT_PUBLIC_NODE_SERVER_URL}client-appwrite-get?slug=GET_CATEGORIES`;
+    const token = await getToken({ template: "supabase_2" });
     const res = await fetch(url, {
       method: "GET",
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -21,7 +23,7 @@ async function getCategories() {
       throw new Error(errMsg);
     }
 
-    const resData = await response.json();
+    const resData = await res.json();
     return resData;
   } catch (err) {
     console.error("Error fetching categoreis:", err);
@@ -29,4 +31,4 @@ async function getCategories() {
   }
 }
 
-export { getCategories }
+export { getCategories };
