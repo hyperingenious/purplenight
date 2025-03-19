@@ -87,7 +87,7 @@ function AppShellLayout({ children }) {
                 <NavigationRoutes toggle={toggleNavbar} colorScheme={colorScheme} />
               </Stack>
               {/* <ScrollSlider /> */}
-              <CategorySelect />
+           
              <Stack gap={0}>
                 <SubscriptionCard
                   open={open}

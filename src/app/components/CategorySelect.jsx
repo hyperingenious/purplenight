@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 import { useMantineTheme, useComputedColorScheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { dark_theme } from "../config/theme"; 
+import { dark_theme } from "../config/theme";
 
 const categories = [
   { value: "", label: "Select Category" },
@@ -14,11 +14,9 @@ const categories = [
   { value: "biography", label: "Biography" },
   { value: "history", label: "History" },
   { value: "politics", label: "Politics" },
-  { value: "business", label: "Business" },
   { value: "science", label: "Science" },
   { value: "tech", label: "Tech" },
   { value: "travel", label: "Travel" },
-  { value: "education", label: "Education" },
 ];
 
 const CategorySelect = () => {
@@ -26,8 +24,8 @@ const CategorySelect = () => {
   const [selected, setSelected] = useState("Select Category");
   const theme = useMantineTheme();
   const colorScheme = useComputedColorScheme();
-  
-  // Media queries for responsiveness
+
+
   const isSmallScreen = useMediaQuery("(max-width: 450px)");
   const isTabletScreen = useMediaQuery("(max-width: 767px)");
 
@@ -37,18 +35,25 @@ const CategorySelect = () => {
 
   const handleSelect = (label) => {
     setSelected(label);
-    setOpen(false); 
+    setOpen(false);
   };
 
   return (
     <div style={styles.container(colorScheme, theme, isSmallScreen, isTabletScreen)}>
       <div style={styles.dropdownHeader(colorScheme, theme)} onClick={toggleDropdown}>
         <span style={styles.selectedLabel(colorScheme, theme)}>{selected}</span>
-        {open ? <IconChevronUp size={18} /> : <IconChevronDown size={18} />}
+        {open ? <IconChevronUp size={16} /> : <IconChevronDown size={16} />}
       </div>
 
-      {open && (
-        <ul style={styles.dropdownList(colorScheme, theme)}>
+      <div
+        style={{
+          ...styles.dropdownList(colorScheme, theme),
+          maxHeight: open ? "1000px" : "0", // Animate height
+          opacity: open ? 1 : 0, // Animate opacity
+          overflow: "hidden",
+          transition: "max-height 0.10s ease, opacity 0.10s ease", 
+        }}
+      >
           {categories.slice(1).map((item) => (
             <li
               key={item.value}
@@ -58,24 +63,22 @@ const CategorySelect = () => {
               {item.label}
             </li>
           ))}
-        </ul>
-      )}
+      </div>
     </div>
   );
 };
 
 const styles = {
   container: (colorScheme, theme, isSmallScreen, isTabletScreen) => ({
-    width: isSmallScreen ? "100%" : "calc(100% - 16px)", // Adjust full width for small screens.
+    width: isSmallScreen ? "100%" : "100%",
     margin: isSmallScreen ? "0" : "0px",
-    marginTop: "-20vw", // Adjusted marginTop to move the element down
     borderRadius: isTabletScreen ? "8px" : "8px",
-    backgroundColor: colorScheme === "dark" ? dark_theme.nav_link_dark_color : "#fff",
+    backgroundColor: colorScheme === "dark" ? dark_theme.nav_link_dark_color : "#F8F9FA",
     fontFamily: "Arial, sans-serif",
     position: "relative",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.06)",
-    transition: "box-shadow 0.3s",
     zIndex: 1,
+    top: "2%",
   }),
   dropdownHeader: (colorScheme, theme) => ({
     display: "flex",
@@ -83,30 +86,37 @@ const styles = {
     alignItems: "center",
     padding: "12px 16px",
     cursor: "pointer",
-    fontSize: "13px",
+    fontSize: "14px",
     fontWeight: "400",
     borderBottom: `1px solid ${colorScheme === "dark" ? dark_theme.border_color : "#ddd"}`,
     color: colorScheme === "dark" ? dark_theme.main_text_color : "#333",
+    transition: "background-color 0.3s",
+    "&:hover": {
+      backgroundColor: colorScheme === "dark" ? "#555" : "#f0f0f0",
+    },
   }),
   selectedLabel: (colorScheme, theme) => ({
-    // flexGrow: 1,
+    flexGrow: 1,
     color: colorScheme === "dark" ? dark_theme.main_text_color : "#333",
   }),
   dropdownList: (colorScheme, theme) => ({
     listStyle: "none",
-    padding: "20",
-    margin: "10",
-    maxHeight: "200px", // Limit dropdown height for usability
-    overflowY: "auto",
-    borderRadius: "min(8px, 1vw)",
+    padding: "0",
+    margin: "0",
+    borderRadius: "8px",
     backgroundColor: colorScheme === "dark" ? dark_theme.nav_link_dark_color : "#fff",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    position: "absolute",
+    width: "100%",
+    top: "100%",
+    left: "0",
+    zIndex: 2,
   }),
   dropdownItem: (colorScheme, theme) => ({
-    padding: "10px 15px",
+    padding: "12px 16px",
     cursor: "pointer",
-    fontSize: "13px",
-    fontWeight : "400",
-    color: colorScheme === "dark" ? dark_theme.main_text_color : "black",
+    fontSize: "14px",
+    color: colorScheme === "dark" ? dark_theme.main_text_color : "#333",
     transition: "background-color 0.3s",
     "&:hover": {
       backgroundColor: colorScheme === "dark" ? "#555" : "#f0f0f0",
