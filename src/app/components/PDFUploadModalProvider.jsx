@@ -30,6 +30,7 @@ import { postPDF } from "../server-functions/postPDF";
 import { getSubscription } from "@/appwrite/get/getSubscription";
 import { getTokenPlan } from "../server-functions/getTokenPlan";
 import ModalForm from "./ModalForm";
+import CategorySelect from "./CategorySelect";
 
 function PDFUploadModalProvider() {
   const { user } = useUser();
@@ -156,6 +157,7 @@ function PDFUploadModalProvider() {
           />
         </Input.Wrapper>
       </Stack>
+      <CategorySelect />
 
       {book && (
         <Card

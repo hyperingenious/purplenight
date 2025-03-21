@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { dark_theme } from "../config/theme";
 import { memo } from "react";
 import { poppins } from "../font";
+import ScrollSlider from "../components/layout/ScrollSlider";
 
 function BookList({
   data,
@@ -103,7 +104,7 @@ function BookList({
               }
               truncate={"end"}
             >
-              By: {item?.author || "unkown"}
+              By: {item?.author || "unknown"}
             </Text>
             <Group gap={"xs"} align="center">
               <Text
@@ -202,6 +203,7 @@ function BookList({
               >
                 Delete
               </Menu.Item>
+              <ScrollSlider />
             </Menu.Dropdown>
           </Menu>
         </Stack>
@@ -210,4 +212,5 @@ function BookList({
   ));
   return <>{rows}</>;
 }
+
 export default memo(BookList);

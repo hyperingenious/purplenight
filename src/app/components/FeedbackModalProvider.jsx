@@ -11,7 +11,7 @@ import {
   Image,
   ActionIcon,
 } from "@mantine/core";
-import { Chat, Paperclip, Trash } from "@phosphor-icons/react";
+import { Chat, Paperclip, Trash, X } from "@phosphor-icons/react";
 import { dark_theme } from "@/app/config/theme";
 import "./Uploaded.css";
 import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
@@ -21,6 +21,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { postFeedback } from "../server-functions/postFeedback";
 import ModalForm from "./ModalForm";
+import { Rating } from '@mantine/core';
 
 function FeedbackModalProvider({ opened, close }) {
   const theme = useMantineTheme();
@@ -59,6 +60,16 @@ function FeedbackModalProvider({ opened, close }) {
     };
     reader.readAsDataURL(file[0]);
   }
+  function Demo() {
+    return (
+        <Rating
+        size="lg"
+            defaultValue={3}
+            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto' , marginTop: '2px'}}
+            color="rgb(255, 233, 39)"
+        />
+    );
+}
   return (
     <ModalForm opened={opened} close={close} title="upload" status={status}>
       <Stack miw={230} gap={0}>
@@ -131,6 +142,7 @@ function FeedbackModalProvider({ opened, close }) {
           )}
         </Group>
       </Stack>
+      <Demo />
       <Button
         mt={"sm"}
         loading={status === "pending"}
