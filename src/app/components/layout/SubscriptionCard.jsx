@@ -66,7 +66,7 @@ function SubscriptionCard({ open, colorScheme }) {
                                 {!data.isActiveSubscription &&
                                     <Button
                                         leftSection={<Crown weight="duotone" size={18} />}
-                                        size='xs' gradient={{ from: 'violet', to: 'grape', deg: 90 }} variant="gradient" className={dm_sans.className} radius={'xl'} onClick={open}>Get Plan</Button>}
+                                        size='xs' ml={'xl'} gradient={{ from: 'violet', to: 'grape', deg: 90 }} variant="gradient" className={dm_sans.className} radius={'xl'} onClick={open}>Get Plan</Button>}
                                 <Text size="xs" c="dimmed" fw={500}>
                                     {data.isActiveSubscription && `blogs: ${data.quota.blogs_generated}/${data.quota.allocated_blog_quota}`}
                                 </Text>
