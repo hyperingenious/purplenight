@@ -30,7 +30,6 @@ import { postPDF } from "../server-functions/postPDF";
 import { getSubscription } from "@/appwrite/get/getSubscription";
 import { getTokenPlan } from "../server-functions/getTokenPlan";
 import ModalForm from "./ModalForm";
-import CategorySelect from "./CategorySelect";
 
 function PDFUploadModalProvider() {
   const { user } = useUser();
@@ -44,8 +43,7 @@ function PDFUploadModalProvider() {
 
   function chooseRandomImage() {
     setCurrentImage(
-      `/compress-cats/${
-        imageArray[Math.floor(Math.random() * imageArray.length)]
+      `/compress-cats/${imageArray[Math.floor(Math.random() * imageArray.length)]
       }`
     );
   }
@@ -157,7 +155,6 @@ function PDFUploadModalProvider() {
           />
         </Input.Wrapper>
       </Stack>
-      <CategorySelect />
 
       {book && (
         <Card
@@ -170,7 +167,7 @@ function PDFUploadModalProvider() {
           radius="md"
         >
           <Group wrap="nowrap" justify="space-between">
-            <Group wrap="nowrap" gap={"xs"}>
+            <Group wrap="nowrap" >
               <BackgroundImage
                 onClick={chooseRandomImage}
                 src={currentImage}
@@ -225,7 +222,7 @@ function PDFUploadModalProvider() {
             )}
           </Group>
           {tokenPlanStatus === "success" && (
-            <Stack gap={"xs"} mt={"xs"}>
+            <Stack mt={"xs"}>
               <Slider
                 onChange={setSliderVal}
                 restrictToMarks
@@ -289,12 +286,11 @@ function PDFUploadModalProvider() {
         }}
         onReject={() => {
           toast.error(
-            `Should not exceed ${
-              isSuccess &&
-              Math.floor(
-                calcPDFSize(data.subscription_type, data.isActiveSubscription) /
-                  1000000
-              )
+            `Should not exceed ${isSuccess &&
+            Math.floor(
+              calcPDFSize(data.subscription_type, data.isActiveSubscription) /
+              1000000
+            )
             }MB`
           );
         }}
@@ -305,17 +301,17 @@ function PDFUploadModalProvider() {
         accept={
           isSuccess && data.isActiveSubscription
             ? [
-                PDF_MIME_TYPE,
-                MIME_TYPES.docx,
-                MIME_TYPES.doc,
-                "text/plain",
-                "application/epub+zip",
-              ]
+              PDF_MIME_TYPE,
+              MIME_TYPES.docx,
+              MIME_TYPES.doc,
+              "text/plain",
+              "application/epub+zip",
+            ]
             : PDF_MIME_TYPE
         }
       >
         {!book && (
-          <Stack mt={"md"} justify="center" style={{ pointerEvents: "none" }}>
+          <Stack mt={"xs"} justify="center" style={{ pointerEvents: "none" }}>
             <Dropzone.Idle>
               <Button
                 style={{ boxShadow: cardShadows.md }}
@@ -367,7 +363,7 @@ function PDFUploadModalProvider() {
       {book && (
         <Button
           variant="filled"
-          mt={"md"}
+          mt={"xs"}
           styles={{ section: { marginInlineEnd: "5px" } }}
           leftSection={<Sparkle color={"black"} size={18} weight="fill" />}
           size="sm"

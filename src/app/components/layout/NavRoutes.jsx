@@ -58,8 +58,6 @@ const NavRoutes = ({ toggle, colorScheme }) => {
           Uploaded
         </Text>
       </Group>
-
-      <CategorySelect/>
     </Stack>
   );
 };
