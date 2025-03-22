@@ -70,16 +70,16 @@ function SubscriptionCard({ setIsAnythingLoading, subscription_type, title, pric
                     </Center>
                 </Card>
                 <Stack gap={0}>
-                    <Title fw={500} className={afacad_flux.className} order={3}>{title}</Title>
+                    <Title fw={500} c={'white'} className={afacad_flux.className} order={3}>{title}</Title>
                     <Group gap={0} m={0}>
-                        <Text className={afacad_flux.className} fw={600} size='xl'>{price}</Text>
+                        <Text className={afacad_flux.className} c={'white'} fw={600} size='xl'>{price}</Text>
                     </Group>
                 </Stack>
             </Group>
-            <List mt={'md'} size="sm" className={dm_sans.className} center icon={<Check size={18} color={colorScheme === 'dark' ? 'gray' : 'black'} weight="bold" />}>
+            <List mt={'md'} size="sm" className={dm_sans.className} center icon={<Check size={18} color={'white'} weight="bold" />}>
                 <ScrollArea w={300} h={250} scrollbars="y">
                     {features.map((feature, index) => (
-                        <List.Item key={index} pb={'xs'}>{feature}</List.Item>
+                        <List.Item c={'white'} key={index} pb={'xs'}>{feature}</List.Item>
                     ))}
                 </ScrollArea>
             </List>
@@ -106,9 +106,9 @@ const plans = [
         subscription_type: "free",
         icon: <CrownSimple size={28} color="#a25915" weight="fill" />,
         bg: "#af6f329c",
+        bg_image: "",
         features: [
-            "12/month blog generation",
-            "Limited to 2 books",
+            "Limited to 5 Books",
             "5MB upload limit per book",
             "Supported formats: PDF",
             "Free content sharing",
@@ -123,34 +123,13 @@ const plans = [
     {
         title: "Reader",
         subscription_type: "reader",
-        price: "₹199/month",
+        price: "₹49/month",
         icon: <Crown size={32} color="#9c9c9c" weight="fill" />,
-        bg: "#9c9c9c29",
+        bg: "linear-gradient(156deg, #b318ff 0%, #5c16ff 100%)",
         features: [
             "300 blog generation",
             "50 book upload limit",
             "10MB upload limit per book",
-            "Formats: PDF, EPUB, TXT, DOCX",
-            "Listen to your blogs",
-            "Unlimited content sharing",
-            "Lifetime access to upcoming themes",
-        ],
-        button: {
-            text: "Choose a plan",
-            disabled: false,
-            variant: "filled",
-        },
-    },
-    {
-        title: "Avid Reader",
-        subscription_type: "avid_reader",
-        price: "₹499/month",
-        icon: <CrownCross size={36} color="#edbd0c" weight="fill" />,
-        bg: "#edbd0c2e",
-        features: [
-            "1000 blog generation",
-            ">250 books upload limit",
-            "20MB upload limit per book",
             "Formats: PDF, EPUB, TXT, DOCX",
             "Listen to your blogs",
             "Unlimited content sharing",
@@ -172,15 +151,15 @@ function SubscriptionModal({ opened, close }) {
     const [isAnythingLoading, setIsAnythingLoading] = useState(false)
 
     return (
-        <Modal size={isBigEnoughScreen ? '70em' : '21em'} opened={opened} radius={"xl"}
+        <Modal size={isBigEnoughScreen ? '45em' : '21em'} opened={opened} radius={"xl"}
             styles={{
                 header: { display: "none" },
                 body: {
                     padding: "0.5rem",
                     paddingBottom: "1rem",
                     background: colorScheme === "dark" ? dark_theme.app_bg_dark_color : "white",
-                    paddingRight: isBigEnoughScreen ? '1.5rem' : "0.5rem",
-                    paddingLeft: isBigEnoughScreen ? '1.5rem' : "0.5rem",
+                    paddingRight: isBigEnoughScreen ? '1.2rem' : "0.5rem",
+                    paddingLeft: isBigEnoughScreen ? '1.2rem' : "0.5rem",
                 },
             }}
             centered bg={theme.colors.gray[0]} onClose={close}>
