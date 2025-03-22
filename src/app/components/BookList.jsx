@@ -16,7 +16,6 @@ import { useRouter } from "next/navigation";
 import { dark_theme } from "../config/theme";
 import { memo } from "react";
 import { poppins } from "../font";
-import ScrollSlider from "../components/layout/ScrollSlider";
 
 function BookList({
   data,
@@ -138,11 +137,10 @@ function BookList({
           <Menu
             styles={{
               dropdown: {
-                background: `${
-                  colorScheme === "dark"
-                    ? dark_theme.app_bg_dark_color
-                    : undefined
-                }`,
+                background: `${colorScheme === "dark"
+                  ? dark_theme.app_bg_dark_color
+                  : undefined
+                  }`,
               },
             }}
             radius={"md"}
@@ -203,7 +201,6 @@ function BookList({
               >
                 Delete
               </Menu.Item>
-              <ScrollSlider />
             </Menu.Dropdown>
           </Menu>
         </Stack>
