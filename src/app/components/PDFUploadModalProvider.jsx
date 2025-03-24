@@ -373,7 +373,7 @@ function PDFUploadModalProvider() {
           leftSection={<Sparkle color={"black"} size={18} weight="fill" />}
           size="sm"
           fullWidth
-          disabled={plan === null}
+          display={plan === null && 'none'}
           fw={400}
           c={"dark"}
           bg={
