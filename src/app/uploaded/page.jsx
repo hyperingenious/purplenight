@@ -8,7 +8,6 @@ import { Book } from "@phosphor-icons/react";
 import BookList from "../components/BookList";
 import BookListSkeleton from "../components/BookListSkeleton";
 import BookListDeleteModal from "../components/BookListDeleteModal";
-import BookListGenerateModal from "../components/BookListGenerateModal";
 import { useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { cardShadows } from "../utils/shadows";
@@ -23,13 +22,7 @@ export default function Uploaded() {
   const { open } = useModelContext();
 
   const [isDeleteBookModalOpened, { open: openDeleteBookModal, close: closeDeleteBookModal }] = useDisclosure();
-  const [isGenerateBookModalOpened, { open: openGenerateBookModal, close: closeGenerateBookModal }] = useDisclosure();
   const [deleteBookId, setDeleteBookId] = useState(null);
-  const [generateBookId, setGenerateBookId] = useState(null);
-  const [isGeneratingBook, setIsGeneratingBook] = useState({
-    isGenerating: false,
-    bookId: null,
-  });
 
   const {
     data: books,
@@ -44,12 +37,6 @@ export default function Uploaded() {
   return (
     <>
       <BookListDeleteModal isOpened={isDeleteBookModalOpened} close={closeDeleteBookModal} bookId={deleteBookId} />
-      <BookListGenerateModal
-        setIsGeneratingBook={setIsGeneratingBook}
-        isOpened={isGenerateBookModalOpened}
-        close={closeGenerateBookModal}
-        bookId={generateBookId}
-      />
       <Group>
         <Button
           leftSection={<Book size={16} />}
@@ -72,12 +59,8 @@ export default function Uploaded() {
         {isBooksSuccess && (
           <BookList
             data={books}
-            isGeneratingBook={isGeneratingBook}
-            setIsGeneratingBook={setIsGeneratingBook}
-            openGenerateBookModal={openGenerateBookModal}
             openDeleteBookModal={openDeleteBookModal}
             setDeleteBookId={setDeleteBookId}
-            setGenerateBookId={setGenerateBookId}
           />
         )}
       </Group>

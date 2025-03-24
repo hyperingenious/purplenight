@@ -19,11 +19,8 @@ import { poppins } from "../font";
 
 function BookList({
   data,
-  openGenerateBookModal,
   openDeleteBookModal,
-  setGenerateBookId,
   setDeleteBookId,
-  isGeneratingBook,
 }) {
   const theme = useMantineTheme();
   const colorScheme = useComputedColorScheme();
@@ -115,21 +112,9 @@ function BookList({
                 }
               >
                 {formatDate(item.$createdAt)},{" "}
-                {isGeneratingBook.bookId !== item.$id &&
+                {
                   `${item.blogs.length} Extracts`}
               </Text>
-              {isGeneratingBook.isGenerating &&
-                isGeneratingBook.bookId === item.$id && (
-                  <Loader
-                    color={
-                      colorScheme === "dark"
-                        ? dark_theme.main_text_color
-                        : theme.colors.dark[9]
-                    }
-                    type="dots"
-                    size={"xs"}
-                  />
-                )}
             </Group>
           </Stack>
         </Group>
@@ -167,30 +152,6 @@ function BookList({
               >
                 Book Options
               </Menu.Label>
-              <Menu.Item
-                onClick={() => {
-                  setGenerateBookId(item.$id);
-                  openGenerateBookModal();
-                }}
-                c={
-                  colorScheme === "dark"
-                    ? dark_theme.main_text_color
-                    : undefined
-                }
-                leftSection={
-                  <Sparkle
-                    color={
-                      colorScheme === "dark"
-                        ? dark_theme.main_text_color
-                        : undefined
-                    }
-                    size={16}
-                    weight="fill"
-                  />
-                }
-              >
-                Generate
-              </Menu.Item>
               <Menu.Item
                 onClick={() => {
                   setDeleteBookId(item.$id);
