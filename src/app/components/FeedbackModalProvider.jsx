@@ -62,14 +62,14 @@ function FeedbackModalProvider({ opened, close }) {
   }
   function Demo() {
     return (
-        <Rating
+      <Rating
         size="lg"
-            defaultValue={3}
-            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto' , marginTop: '2px'}}
-            color="rgb(255, 233, 39)"
-        />
+        defaultValue={3}
+        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto', marginTop: '2px' }}
+        color="rgb(255, 233, 39)"
+      />
     );
-}
+  }
   return (
     <ModalForm opened={opened} close={close} title="upload" status={status}>
       <Stack miw={230} gap={0}>
@@ -142,7 +142,6 @@ function FeedbackModalProvider({ opened, close }) {
           )}
         </Group>
       </Stack>
-      <Demo />
       <Button
         mt={"sm"}
         loading={status === "pending"}
