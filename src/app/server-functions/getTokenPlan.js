@@ -11,7 +11,7 @@ export async function getTokenPlan({ getToken, file }) {
 
         const token = await getToken({ template: "supabase_2" });
 
-        const response= await fetch(`${process.env.NEXT_PUBLIC_NODE_SERVER_URL}get-token-plan`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_NODE_SERVER_URL}get-token-plan`, {
             method: "POST",
             body: formData,
             headers: {

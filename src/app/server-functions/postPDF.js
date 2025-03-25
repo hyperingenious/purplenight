@@ -1,4 +1,4 @@
-export async function postPDF({ getToken, id, file, authorName, bookTitle, currentImage: book_image, blogCount, categoryId}) {
+export async function postPDF({ getToken, id, file, authorName, bookTitle, currentImage: book_image, blogCount, categoryId }) {
   try {
     const currentImageURL = `https://purplenight.hyperingenious.tech/${book_image}`;
 
