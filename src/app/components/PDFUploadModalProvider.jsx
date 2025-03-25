@@ -60,7 +60,7 @@ function PDFUploadModalProvider() {
   const [book, setBook] = useState(null);
   const [authorName, setAuthorName] = useState(null);
   const [bookTitle, setBookTitle] = useState(null);
-  const [plan, setPlan] = useState(null);
+  const [plan, setPlan] = useState(false);
   const colorScheme = useComputedColorScheme();
   // const [count, handlers] = useCounter(plan?.possiblePercentageJump, { min: plan?.possiblePercentageJump, max: 100 });
 
@@ -111,7 +111,8 @@ function PDFUploadModalProvider() {
     mutationFn: getTokenPlan,
     onSuccess: tokenPlanOnSuccess,
     onError: (err) => {
-      toast.error("Something gone wrong our side");
+      toast.error(err);
+      setBook(null)
     },
   });
 
@@ -203,7 +204,7 @@ function PDFUploadModalProvider() {
               <ActionIcon
                 onClick={() => {
                   setBook(null);
-                  setPlan(null)
+                  setPlan(false)
                 }}
                 mr={"xs"}
                 size={"lg"}
@@ -366,14 +367,13 @@ function PDFUploadModalProvider() {
         )}
       </Dropzone>
 
-      {book && (
+      {book && plan && (
         <Button
           variant="filled"
           styles={{ section: { marginInlineEnd: "5px" } }}
           leftSection={<Sparkle color={"black"} size={18} weight="fill" />}
           size="sm"
           fullWidth
-          display={plan === null && 'none'}
           fw={400}
           c={"dark"}
           bg={
