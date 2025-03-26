@@ -15,11 +15,12 @@ function shuffleArrayRandomly(array) {
 }
 
 function extractFirstLine(markdown) {
-  const start = markdown.indexOf("##");
+  const start = markdown.indexOf("#");
   if (start == -1) return null;
   const end = markdown.indexOf("\n", start);
   if (end === -1) return null;
-  return [markdown.slice(start + 2, end).trim()];
+  const what = [markdown.slice(start + 2, end).trim()];
+  return what;
 }
 
 const formatDate = (isoString) => {
