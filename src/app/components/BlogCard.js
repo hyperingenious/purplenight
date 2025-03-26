@@ -36,7 +36,7 @@ function BlogCard({ blog }) {
 
   // Extract title logic
   const title = useMemo(() => {
-    const start = blog.blog_markdown.indexOf("##");
+    const start = blog.blog_markdown.indexOf("#");
     if (start === -1) return null;
     const end = blog.blog_markdown.indexOf("\n", start);
     return blog.blog_markdown.slice(start + 2, end).trim();
