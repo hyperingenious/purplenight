@@ -61,6 +61,7 @@ function PDFUploadModalProvider() {
   const [authorName, setAuthorName] = useState(null);
   const [bookTitle, setBookTitle] = useState(null);
   const [plan, setPlan] = useState(false);
+  const [isGenerateButton, setIsGenerateButton] =  useState(false)
   const colorScheme = useComputedColorScheme();
   // const [count, handlers] = useCounter(plan?.possiblePercentageJump, { min: plan?.possiblePercentageJump, max: 100 });
 
@@ -84,6 +85,7 @@ function PDFUploadModalProvider() {
     },
   });
   function tokenPlanOnSuccess({ possiblePercentangeJump }) {
+    setIsGenerateButton(true)
     const closestTo100 = roundToClosestFactorOf100(possiblePercentangeJump);
 
     const marks = Array.from({
@@ -204,6 +206,7 @@ function PDFUploadModalProvider() {
               <ActionIcon
                 onClick={() => {
                   setBook(null);
+                  setIsGenerateButton(false)
                   setPlan(false)
                 }}
                 mr={"xs"}
@@ -249,7 +252,7 @@ function PDFUploadModalProvider() {
                 min={sliderState.min}
                 marks={sliderState.marks}
               />
-              <Group gap={"xs"}>
+              <Group mt={'xs'} gap={"xs"}>
                 <Badge
                   size="sm"
                   variant="light"
@@ -289,6 +292,7 @@ function PDFUploadModalProvider() {
           await getTheTokenPlan({ getToken, file });
           if (tokenPlanStatus === "success") {
             setPlan(tokenPlanData);
+            setIsGenerateButton(true)
           }
         }}
         onReject={() => {
@@ -367,7 +371,8 @@ function PDFUploadModalProvider() {
         )}
       </Dropzone>
 
-      {book && plan && (
+      {
+        isGenerateButton && 
         <Button
           variant="filled"
           styles={{ section: { marginInlineEnd: "5px" } }}
@@ -396,7 +401,7 @@ function PDFUploadModalProvider() {
         >
           Generate
         </Button>
-      )}
+      }
     </ModalForm>
   );
 }
