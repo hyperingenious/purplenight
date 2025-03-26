@@ -8,6 +8,7 @@ import {
   useMantineTheme,
   useComputedColorScheme,
   BackgroundImage,
+  Badge,
 } from "@mantine/core";
 import { cardShadows } from "../utils/shadows";
 import { DotsThreeVertical, Sparkle, Trash } from "@phosphor-icons/react";
@@ -110,15 +111,18 @@ function BookList({
                     ? dark_theme.secondary_text_color
                     : theme.colors.dark[2]
                 }
-              >
+             >
                 {formatDate(item.$createdAt)},{" "}
                 {
                   `${item.blogs.length} Extracts`}
               </Text>
-            </Group>
+              {item.user_id === 'user_2ur1m5I0EdV5hjQOY5CS1QIbMuF' &&
+              <Badge color="blue" variant="light" size="sm">Example</Badge>
+              }
+              </Group>
           </Stack>
         </Group>
-        <Stack justify="space-between">
+        <Stack display={item.user_id === 'user_2ur1m5I0EdV5hjQOY5CS1QIbMuF' && 'none'} justify="space-between">
           <Menu
             styles={{
               dropdown: {
