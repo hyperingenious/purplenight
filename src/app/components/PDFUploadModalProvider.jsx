@@ -32,6 +32,7 @@ import { postPDF } from "../server-functions/postPDF";
 import { getSubscription } from "@/appwrite/get/getSubscription";
 import { getTokenPlan } from "../server-functions/getTokenPlan";
 import ModalForm from "./ModalForm";
+import { getPDFMetadata } from "../helpers/helper";
 
 function PDFUploadModalProvider() {
   const { user } = useUser();
@@ -118,7 +119,7 @@ function PDFUploadModalProvider() {
     },
   });
 
-  const { data, isLoading, isSuccess } = useQuery({
+  const { data, _, isSuccess } = useQuery({
     queryKey: ["blog"],
     queryFn: () => getSubscription({ getToken }),
   });
@@ -161,7 +162,7 @@ function PDFUploadModalProvider() {
           />
         </Input.Wrapper>
       </Stack>
-
+ 
       {book && (
         <Card
           withBorder
@@ -208,6 +209,8 @@ function PDFUploadModalProvider() {
                   setBook(null);
                   setIsGenerateButton(false)
                   setPlan(false)
+                  setAuthorName('')
+                  setBookTitle('')
                 }}
                 mr={"xs"}
                 size={"lg"}
@@ -294,6 +297,7 @@ function PDFUploadModalProvider() {
             setPlan(tokenPlanData);
             setIsGenerateButton(true)
           }
+        await getPDFMetadata({file: file[0], setAuthorName, setBookTitle}); 
         }}
         onReject={() => {
           toast.error(
