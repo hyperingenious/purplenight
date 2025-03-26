@@ -76,6 +76,7 @@ function PDFUploadModalProvider() {
       setBook(null);
       setAuthorName(null);
       setBookTitle(null);
+      setIsGenerateButton(false)
     },
     onError: (err) => {
       close();
