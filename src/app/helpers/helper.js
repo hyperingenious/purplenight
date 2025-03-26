@@ -45,9 +45,6 @@ async function getPDFMetadata({ file, setAuthorName, setBookTitle }) {
       const title = metadata.info?.Title || "Unknown Title";
       const author = metadata.info?.Author || "Unknown Author";
 
-      console.log("Title:", title);
-      console.log("Author:", author);
-
       // Update state (if provided)
       if (setBookTitle) setBookTitle(title);
       if (setAuthorName) setAuthorName(author);
