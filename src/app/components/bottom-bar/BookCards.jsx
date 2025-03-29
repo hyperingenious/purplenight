@@ -36,13 +36,13 @@ function BookCards({
     toggle
   };
 
-  return     (
-  <>
+  return (
+    <>
       {isActiveBook && <ActiveBookCard {...props} />}
       {!isActiveBook && <NonactiveBookCard {...props} />}
- </>
- )
-  
+    </>
+  )
+
 }
 
 function NonactiveBookCard({
@@ -61,7 +61,7 @@ function NonactiveBookCard({
   return (
     <Card
       onClick={() => {
-        if(toggle) toggle()
+        if (toggle) toggle()
         const blogIds = Array.from(blogs);
         blogIds.unshift({ $id });
         const slug = blogIds.map((obj) => obj.$id).join("/");
@@ -80,7 +80,7 @@ function NonactiveBookCard({
     >
       <Group justify="flex-start" wrap="nowrap" gap="xs">
         <BackgroundImage
-          src={book_image}
+          src={book_image.replace("hyperingenious.tech", ".live")}
           radius="xl"
           h={36}
           w={36}
