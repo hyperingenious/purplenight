@@ -68,7 +68,7 @@ function BookList({
             style={{
               boxShadow: cardShadows.xs,
             }}
-            src={item.book_image}
+            src={item.book_image.replace('hyperingenious.tech', 'live')}
             radius="md"
             h={38}
             w={38}
@@ -111,15 +111,15 @@ function BookList({
                     ? dark_theme.secondary_text_color
                     : theme.colors.dark[2]
                 }
-             >
+              >
                 {formatDate(item.$createdAt)},{" "}
                 {
                   `${item.blogs.length} Extracts`}
               </Text>
               {item.user_id === 'user_2ur1m5I0EdV5hjQOY5CS1QIbMuF' &&
-              <Badge color="blue" variant="light" size="sm">Example</Badge>
+                <Badge color="blue" variant="light" size="sm">Example</Badge>
               }
-              </Group>
+            </Group>
           </Stack>
         </Group>
         <Stack display={item.user_id === 'user_2ur1m5I0EdV5hjQOY5CS1QIbMuF' && 'none'} justify="space-between">
