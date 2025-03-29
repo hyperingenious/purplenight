@@ -265,7 +265,7 @@ function BlogCard({ blog }) {
             loading="lazy"
             sizes="100vw"
           />
-
+{'hi'}
           <Stack pr="sm" py="sm" gap={0}>
             <Group
               mb="xs"
