@@ -37,6 +37,8 @@ function RootLayout({ children }) {
             <title>Purplenight</title>
           </head>
           {/* <script async src="https://unpkg.com/react-scan/dist/auto.global.js"></script> */}
+              <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
           <body>
             <MantineProvider theme={defaultTheme} defaultColorScheme="light">
               <ModelProvider>

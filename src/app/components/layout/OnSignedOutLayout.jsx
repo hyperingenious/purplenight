@@ -3,7 +3,7 @@
 import { SignedOut } from "@clerk/clerk-react";
 import { usePathname } from "next/navigation";
 import PublicAppShellLayout from "./PublicAppShellLayout";
-import NotSignedIn from "../NotSignedIn";
+import NotSignedIn from "../NotSignedIn/NotSignedIn";
 
 function OnSignedOutLayout({ children }) {
   const pathname = usePathname();

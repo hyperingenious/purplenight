@@ -30,6 +30,8 @@ function SmallBlogCard({ blog, bookImage, author }) {
             style={{
               boxShadow: cardShadows.xs,
               objectFit: "cover",
+
+            height:'142px'
             }}
             width={125}
             height={142}
