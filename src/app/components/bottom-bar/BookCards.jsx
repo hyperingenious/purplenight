@@ -80,7 +80,7 @@ function NonactiveBookCard({
     >
       <Group justify="flex-start" wrap="nowrap" gap="xs">
         <BackgroundImage
-          src={book_image.replace("hyperingenious.tech", ".live")}
+          src={book_image.replace("hyperingenious.tech", "live")}
           radius="xl"
           h={36}
           w={36}
