@@ -47,7 +47,6 @@ async function getAllBlogsWithBookId({ getToken, book_id, blog_exception, isANoC
     }
 
     const responseData = await response.json();
-    console.log(responseData)
     return responseData;
 
   } catch (error) {

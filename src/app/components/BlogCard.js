@@ -258,6 +258,7 @@ function BlogCard({ blog }) {
               maxHeight: 177,
               boxShadow: cardShadows.xs,
               objectFit: "cover",
+              height: '177px'
             }}
             width={isSmallScreen ? 120 : 140}
             height={177}
