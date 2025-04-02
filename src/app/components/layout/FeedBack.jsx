@@ -1,6 +1,6 @@
 import { dark_theme } from "@/app/config/theme";
 import { ActionIcon, useComputedColorScheme, useMantineTheme } from "@mantine/core";
-import { QuestionMark } from "@phosphor-icons/react";
+import {  Star } from "@phosphor-icons/react";
 
 function FeedBack({ open }) {
     const colorScheme = useComputedColorScheme();
@@ -14,7 +14,7 @@ function FeedBack({ open }) {
             radius="xl"
             aria-label="Settings"
         >
-            <QuestionMark
+            <Star
                 size={16}
                 weight="bold"
                 color={
