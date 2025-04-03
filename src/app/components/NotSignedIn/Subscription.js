@@ -11,9 +11,9 @@ import {
   Mark,
 } from "@mantine/core";
 import { motion } from "framer-motion";
-import { cardShadows } from "../helpers/shadows";
 import { Check, CrownCross, CrownSimple } from "@phosphor-icons/react";
 import { useMediaQuery } from "@mantine/hooks";
+import { cardShadows } from "@/app/utils/shadows";
 
 function SubscriptionCard({
   title,

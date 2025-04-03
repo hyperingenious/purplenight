@@ -4,6 +4,7 @@ import OfficeSection from "./OfficeSection";
 import Footer from "./Footer";
 import Navbar from "./NavBar";
 import Hero from "./Hero";
+import Subscription from "./Subscription";
 
 const NotSignedIn = () => {
    // Create refs for each section
@@ -25,6 +26,7 @@ const NotSignedIn = () => {
         <main className="flex-grow">
           <WorkSection ref={examplesRef} />
           <OfficeSection ref={learnMoreRef} />
+<Subscription  />
         </main>
         <Footer ref={footerRef} />
       </div>
