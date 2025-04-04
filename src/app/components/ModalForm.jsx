@@ -8,7 +8,6 @@ function ModalForm({ opened, close, title, children, status }) {
   return (
     <Modal
       radius={"xl"}
-      centered
       styles={{
         content: {
           maxWidth: "310px",

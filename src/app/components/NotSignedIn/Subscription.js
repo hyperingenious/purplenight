@@ -1,15 +1,4 @@
-import {
-  useComputedColorScheme,
-  Title,
-  Stack,
-  Text,
-  Card,
-  Group,
-  List,
-  Center,
-  ScrollArea,
-  Mark,
-} from "@mantine/core";
+import { useComputedColorScheme, Title, Stack, Text, Card, Group, List, Center, ScrollArea, Mark, } from "@mantine/core";
 import { motion } from "framer-motion";
 import { Check, CrownCross, CrownSimple } from "@phosphor-icons/react";
 import { useMediaQuery } from "@mantine/hooks";
