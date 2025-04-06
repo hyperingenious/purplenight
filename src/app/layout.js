@@ -9,6 +9,7 @@ import { createTheme, MantineProvider } from "@mantine/core";
 import { ClerkProvider } from "@clerk/nextjs";
 import AppShellLayout from "./components/layout/AppShellLayout";
 import { ModelProvider } from "./contexts/ModelProvider";
+import { Analytics } from "@vercel/analytics/react"
 
 // Root Layout Component
 function RootLayout({ children }) {
@@ -19,6 +20,7 @@ function RootLayout({ children }) {
   });
 
   const queryClient = new QueryClient();
+
 
   return (
     <ClerkProvider>
@@ -37,12 +39,13 @@ function RootLayout({ children }) {
             <title>Purplenight</title>
           </head>
           {/* <script async src="https://unpkg.com/react-scan/dist/auto.global.js"></script> */}
-              <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
           <body>
             <MantineProvider theme={defaultTheme} defaultColorScheme="light">
               <ModelProvider>
                 <AppShellLayout>{children}</AppShellLayout>
+                <Analytics />
               </ModelProvider>
             </MantineProvider>
           </body>
